@@ -10,12 +10,12 @@ def prompt():
 
 
 if __name__ == "__main__":
-    '''if len(sys.argv) < 3:
+    if len(sys.argv) < 3:
         print("Usage: python chat_client.py hostname port")
-        sys.exit()'''
+        sys.exit()
 
-    host = sys.argv[1]
-    port = int(sys.argv[2])
+    host = "localhost" #sys.argv[1]
+    port = 8888 #int(sys.argv[2])
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
@@ -27,6 +27,9 @@ if __name__ == "__main__":
         sys.exit()
 
     print("Connected to server, start typing")
+    '''nick = input("Write you nick: ")
+    s.send(("<USER NICK {}>".format(nick)).encode())'''
+
     prompt()
 
     while True:
