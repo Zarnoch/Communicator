@@ -7,11 +7,11 @@ class StartServerTest(TestScenario):
 
     def prepare_assumptions(self):
         self.assumptions.append(Assumption(1, "Open connection", "Not tested"))
-        self.assumptions.append(Assumption(2, "Open connection", "Not tested"))
 
     def execute(self):
-        # ServerTestUtilities.start_server()
-        if 'cos z konsoli' == "os oczekiwane":
+        server_process = ServerTestUtilities.start_server()
+        response = ServerTestUtilities.read_console(server_process)
+        if response == b'Chat server has started on port: 8888\r\n':
             self.server_started = True
 
     def check_results(self):
