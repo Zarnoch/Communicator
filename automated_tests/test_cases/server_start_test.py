@@ -1,7 +1,6 @@
 from automated_tests.core import ServerTestUtilities
 from automated_tests.test_scenario import TestScenario
-from automated_tests.assumtion import Assumption
-
+from automated_tests.assumption import Assumption
 
 class StartServerTest(TestScenario):
     server_started = False

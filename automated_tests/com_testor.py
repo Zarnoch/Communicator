@@ -33,9 +33,9 @@ def perform_test(test_name):
     '''Sprawdzenie wynikow poprzez metode z klasy testu /CheckResults/'''
     current_test.check_results()
 
+
 # Gather all test classes
 test_classes = find_all_test_classes()
-print(test_classes)
 test_name = sys.argv[1]
 
 perform_test(test_name)
