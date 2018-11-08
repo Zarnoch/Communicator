@@ -1,4 +1,4 @@
-from automated_tests.core import ServerTestUtilities
+from automated_tests.core import ServerTestUtilities, CoreTestUtilities
 from automated_tests.test_scenario import TestScenario
 from automated_tests.assumption import Assumption
 
@@ -10,7 +10,7 @@ class StartServerTest(TestScenario):
 
     def execute(self):
         server_process = ServerTestUtilities.start_server()
-        response = ServerTestUtilities.read_console(server_process)
+        response = CoreTestUtilities.read_console(server_process)
         if response == b'Chat server has started on port: 8888\r\n':
             self.server_started = True
 
