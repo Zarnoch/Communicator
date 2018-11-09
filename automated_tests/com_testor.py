@@ -13,32 +13,36 @@ def find_all_test_classes():
     return clsmembers
 
 
-def perform_test(test_name):
-    '''Wypisanie jakie test sie rozpoczal '''
-    print("Test {} started".format(test_name))
-
-    '''Inicjalizacja testu podanego w args '''
-    current_test = test_classes[test_name]()
-
-    '''Przygotowanie assumptions z testu'''
+def perform_test(class_name):
+    test_classes = find_all_test_classes()
+    if class_name not in test_classes:
+        print("Cannot find the test with the following name: {}".format(class_name))
+        sys.exit()
+    print("Test {} started".format(class_name))
+    current_test = test_classes[class_name]()
     current_test.prepare_assumptions()
-
-    '''Opcjonalinie: Wypisanie assumptions '''
     for assumption in current_test.assumptions:
         print("Assumtion: {}".format(assumption.description))
-
-    '''Egzekucja metody /Execution/'''
     current_test.execute()
-
-    '''Sprawdzenie wynikow poprzez metode z klasy testu /CheckResults/'''
     current_test.check_results()
 
 
-# Gather all test classes
-test_classes = find_all_test_classes()
-test_name = sys.argv[1]
+def perform_all_test():
+    test_classes = find_all_test_classes()
+    for test_class in test_classes:
+        perform_test(test_class)
 
-perform_test(test_name)
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python com_testor.py test_name")
+        print("You can type 'all' instead of a test name to perform all tests.")
+        sys.exit()
+    test_name = sys.argv[1]
+    if test_name == "all":
+        perform_all_test()
+    else:
+        perform_test(test_name)
 
 
 
