@@ -2,7 +2,9 @@ from automated_tests.core import ServerTestUtilities, CoreTestUtilities
 from automated_tests.test_scenario import TestScenario
 from automated_tests.assumption import Assumption
 
+
 class StartServerTest(TestScenario):
+    description = "Checks if server start performs correctly"
     server_started = False
 
     def prepare_assumptions(self):
@@ -16,3 +18,4 @@ class StartServerTest(TestScenario):
 
     def check_results(self):
         self.assumptions[0].result = "Pass" if self.server_started else "Fail"
+        return all([assumption.result == "Pass" for assumption in self.assumptions])

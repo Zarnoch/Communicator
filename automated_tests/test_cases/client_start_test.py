@@ -4,6 +4,7 @@ from automated_tests.assumption import Assumption
 
 
 class ClientServerTest(TestScenario):
+    description = "Checks if client start performs correctly"
     server_started = False
     client_started = False
 
@@ -30,4 +31,4 @@ class ClientServerTest(TestScenario):
         self.assumptions[0].result = "Pass" if self.server_started else "Fail"
         self.assumptions[1].result = "Pass" if self.client_started else "Fail"
         self.assumptions[2].result = "Pass" if self.client_started else "Fail"
-
+        return all([assumption.result == "Pass" for assumption in self.assumptions])
